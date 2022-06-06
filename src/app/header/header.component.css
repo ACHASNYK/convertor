@@ -1,0 +1,11 @@
+.header_main {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.currency_rates {
+    display: flex;
+    flex-direction: row;
+    
+}
