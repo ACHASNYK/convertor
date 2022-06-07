@@ -7,17 +7,13 @@ import { Rate } from '../Rate';
   providedIn: 'root'
 })
 export class RateServiceService {
-  private apiUrl_USD = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json&valcode=USD'
-  private apiUrl_EUR = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json&valcode=EUR'
+  
+  private apiUrl_all = 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json'
   
   constructor(private http: HttpClient) { }
   
-  getRate_USD(): Observable<Rate[]> {
-    return this.http.get<Rate[]>(this.apiUrl_USD)
-  } 
-
-  getRate_EUR(): Observable<Rate[]> {
-    return this.http.get<Rate[]>(this.apiUrl_EUR)
+  getRate_All(): Observable<Rate[]> {
+    return this.http.get<Rate[]>(this.apiUrl_all)
   }
 
 

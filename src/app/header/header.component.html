@@ -1,11 +1,14 @@
-<header>
-    <h1><b> CURRENCY RATE CONVERTOR</b></h1>
-    <div class="currency_rates">EUR
-        <div class="currency_dislplay" style="height: auto; width:auto; border: 1px solid black">{{getEur()}}</div>
+<div>
+    <div>
+    <h1><b> CURRENCY RATE CONVERTOR</b></h1> <h1><b>The National Bank of Ukraine official rates for foreign currencies as of today, {{getDate()}}, are: </b></h1>
     </div>
-    <div class="currency_rates">USD
-        <div class="currency_display" style="height: auto; width: auto; border: 1px solid black">{{getUsd()}}</div>
+    <div class="currency_rates">1 EURO (EUR) = 
+        <div class="currency_dislplay" style="height: auto; width:auto; border: 1px solid black">{{getEur()}} Hryvnya (UAH)</div>
     </div>
-    <app-convertor color="12345"></app-convertor>
+    <div class="currency_rates">1 US Dollar (USD) = 
+        <div class="currency_display" style="height: auto; width: auto; border: 1px solid black">{{getUsd()}} Hryvnya (UAH)</div>
+    </div>
+    
+    <app-convertor rateUsd = "getUsd" rateEur="getEur"></app-convertor>
 
-</header>
+</div>

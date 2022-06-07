@@ -9,23 +9,36 @@ import { Rate } from '../Rate';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  rate!: Rate[];
+  rates_all: Rate[]=[];
+  
 
-  // getUsd() {
-  //   return this.usd_rate;
-  // }
+  getEur() {
+    
+    let index = this.rates_all?.findIndex(ind =>ind.cc==="EUR")
+    return this.rates_all[index]?.rate.toFixed(2)
+    
+  }
 
-  // getEur() {
-  //   return this.eur_rate;
-  // } 
+  getUsd() {
+    let index = this.rates_all?.findIndex(ind => ind.cc === "USD")
+    return this.rates_all[index]?.rate.toFixed(2)
+  }
 
+  getDate() {
+    // let index = this.rates_all?.findIndex(ind =>ind.cc==="EUR")
+    return this.rates_all[0]?.exchangedate
+  }
   
   constructor(private rateService: RateServiceService) {
     
    }
 
   ngOnInit(): void {
-    this.rateService.getRate_EUR().subscribe((rate) => (this.rate = rate))
+         
+    this.rateService.getRate_All().subscribe((res: Rate[]) => {
+      this.rates_all = res
+    })
+    
   }
 
 }
