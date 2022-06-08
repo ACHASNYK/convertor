@@ -9,6 +9,6 @@
         <div class="currency_display" style="height: auto; width: auto; border: 1px solid black">{{getUsd()}} Hryvnya (UAH)</div>
     </div>
     
-    <app-convertor rateUsd = "getUsd" rateEur="getEur"></app-convertor>
+    <app-convertor [rates_Usd]="rates_Usd" [rates_Eur]="rates_Eur" [rates_Uah]="rates_Uah" ></app-convertor>
 
 </div>

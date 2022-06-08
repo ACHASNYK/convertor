@@ -1,30 +1,36 @@
 <div>
-    <h1>Please input amount and select a currency to calculate a rate</h1>
+    <h1>Please input amount and select a currency to calculate a rate </h1>
 </div>
-<div>
-    <input (change)="onChangeLeft()">
-    <select>
-        <option>
-            USD
+<form [formGroup]="myForm">
+    Value: {{myForm.value|json}}
+    <div class="form-input">
+        <label for="number">Amount</label>
+            <input type="text" formControlName="number1" id="num1" placeholder="Input Amount" (focus)="onFocusLeft()" >
+            
+    <select formControlName="rate1" (change)="setRate1($event)">
+        <option value="" disabled>Please select a currency</option>
+        <option value={{this.rates_Usd}}>
+            (USD) US Dollar
         </option>
-        <option>
-            EUR
+        <option value={{this.rates_Eur}}>
+            (EUR) Euro
         </option>
-        <option>
-            UAH
+        <option value={{this.rates_Uah}}>
+            (UAH) Hryvnya
         </option>
     </select>
 </div>
 <div>
-    <input (change)="onChangeRight()">
-    <select>
-        <option>
+    <input type="text" formControlName="number2" id="num2" placeholder="Input Amount" (focus)="onFocusRight()">
+    <select formControlName="rate2" (change)="setRate2($event)">
+        <option value="" disabled>please select a currency</option>
+        <option value={{this.rates_Usd}}>
             USD
         </option>
-        <option>
+        <option value={{this.rates_Eur}}>
             EUR
         </option>
-        <option>
+        <option value={{this.rates_Uah}}>
             UAH
         </option>
     </select>
