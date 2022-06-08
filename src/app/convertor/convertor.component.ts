@@ -36,14 +36,14 @@ export class ConvertorComponent implements OnInit {
   }
 // <<=== a function to calculate an input from the left source form and update a value of ht eright target form==>>
   leftFormInput() {
-    this.myForm.valueChanges.pipe(debounceTime(100)).subscribe(val => {
-      if (val.number1 > 0 && this.flow_trigger) {
+    this.myForm.valueChanges.pipe(debounceTime(150)).subscribe(val => {
+      if (val.number1 > 0 && this.flow_trigger && this.rate1 && this.rate2) {
         let sum = ((val.number1 * this.rate1) / this.rate2).toFixed(2);
         
         this.myForm.get("number2")?.patchValue(Number(sum), { emitEvent: false });
         // this.flow_trigger = true;
       } else {
-        if (val.number2 > 0 && !this.flow_trigger) {
+        if (val.number2 > 0 && !this.flow_trigger && this.rate1 && this.rate2) {
           let sum = ((val.number2 * this.rate2) / this.rate1).toFixed(2);
           // this.flow_trigger = false;
           this.myForm.get("number1")?.patchValue(Number(sum), { emitEvent: false })
