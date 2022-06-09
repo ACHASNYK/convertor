@@ -18,6 +18,11 @@ input:focus {
         
 
 }
+
+.group-input{
+    display: flex;
+    flex-direction: row;
+}
 label {
     color: #999;
     font-size: 18px;
