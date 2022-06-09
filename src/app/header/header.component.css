@@ -1,4 +1,40 @@
-.header_main {
+.container {
+    background: #f0f0f0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.box {
+    border-radius: 20px;
+    width: 40vw;
+    min-width: 350px;
+    height: 60vh;
+        background: #fafafa;
+        box-shadow: 40px 40px 40px #cccccc,
+            0 0 0 #ffffff,
+            0 0 0 #cccccc inset,
+            2px 2px 2px #ffffff inset;
+        }
+        
+        
+
+.header_text {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    text-align: center;
+    
+}
+
+.currencies_rates {
+    display: flex;
+    flex-direction: row;
+}
+/* .header_main {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -11,4 +47,4 @@
     display: flex;
     flex-direction: row;
     
-}
+} */

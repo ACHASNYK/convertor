@@ -1,3 +1,6 @@
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,11 +12,17 @@ import { HeaderComponent } from './header/header.component';
 import { ConvertorComponent } from './convertor/convertor.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ConvertorComponent
+    ConvertorComponent, 
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -21,7 +30,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatSelectModule
+   
+    
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
