@@ -2,6 +2,7 @@
     <h1>Please input amount and select a currency to calculate a rate </h1>
 </div>
 <form [formGroup]="myForm">
+<<<<<<< HEAD
     
     <div class="form-input" appearance="fill">
         <input type="text" id=amnt formControlName="number1" (focus)="onFocusLeft()" >
@@ -9,10 +10,17 @@
         <span class="bar"></span>
         <label class="label">input amount</label>
         
+=======
+    <div class="form-input">
+        <label for="number">Amount
+            <input type="text" formControlName="number1" id="num1" placeholder="Input Amount" (focus)="onFocusLeft()" >
+         </label>
+>>>>>>> dfcc3404e9db48edf7a52309bfb8bd49c87bf3c4
         <div *ngIf="(myForm.get('number1')?.dirty ||
                          myForm.get('number1')?.touched
                         ) &&
                         myForm.get('number1')?.invalid">
+<<<<<<< HEAD
             Please input only <strong>positive digits</strong>
         </div>
     </div>
@@ -21,6 +29,13 @@
         <select  formControlName="rate1" (change)="setRate1($event)">
             <option value="" disabled>Please select a currency</option>
             <option value={{this.rates_Usd}}>
+=======
+            Please input only positive digits.
+        </div>
+    <select formControlName="rate1" (change)="setRate1($event)">
+        <option value="" disabled>Please select a currency</option>
+        <option value={{this.rates_Usd}}>
+>>>>>>> dfcc3404e9db48edf7a52309bfb8bd49c87bf3c4
             (USD) US Dollar
             </option>
             <option value={{this.rates_Eur}}>
