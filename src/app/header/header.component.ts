@@ -8,6 +8,7 @@ import { Rate } from '../Rate';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+  
 export class HeaderComponent implements OnInit {
   rates_all: Rate[] = [];
   rates_Usd!: number;
@@ -15,23 +16,15 @@ export class HeaderComponent implements OnInit {
   rates_Uah!: number
   
   
-
+// <<=== a helper functions to grab a current rates and date from API source.
   getEur() {    
-    let num = this.rates_all[this.rates_all?.findIndex(ind => ind.cc === "EUR")]?.rate?.toFixed(2)
-    // let num = this.rates_all[index]?.rate
-    
-   
+    let num = this.rates_all[this.rates_all?.findIndex(ind => ind.cc === "EUR")]?.rate?.toFixed(2);     
     this.rates_Eur = Number(num)
-     
-      return Number(num)
-    
+    return Number(num)    
   }
 
   getUsd() {
-    let num = this.rates_all[this.rates_all?.findIndex(ind => ind.cc === "USD")]?.rate?.toFixed(2)
-    // let index = this.rates_all?.findIndex(ind => ind.cc === "USD")
-    // return this.rates_all[index]?.rate.toFixed(2)
-    
+    let num = this.rates_all[this.rates_all?.findIndex(ind => ind.cc === "USD")]?.rate?.toFixed(2);    
     this.rates_Usd = Number(num)
     return Number(num)
   }
@@ -41,25 +34,21 @@ export class HeaderComponent implements OnInit {
     return this.rates_Uah = Number(num)
   }
 
-  getDate() {
-    
+  getDate() {    
     return this.rates_all[0]?.exchangedate
   }
   
   constructor(private rateService: RateServiceService) {
     
    }
-
+  //  <<=== a service providing API get from currency daily rate source
   ngOnInit(): void {
          
     this.rateService.getRate_All().subscribe((res: Rate[]) => {
       this.rates_all = res
     }),
     
-    this.getUah();
-    
-  
-    
+    this.getUah();   
     
   }
 

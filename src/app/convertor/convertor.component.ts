@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder, FormGroup, Validators,
+  AbstractControl, ValidationErrors,
+  ValidatorFn} from '@angular/forms';
 import { debounceTime } from 'rxjs';
 
 
@@ -21,50 +24,48 @@ export class ConvertorComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
+  // <<== Validation pattern for correct only positive digits input
   ngOnInit(): void {
     this.myForm = this.fb.group({
-      number1!: null,
-      rate1!: "",
-      number2!: null,
-      rate2!: "",
+      number1!: [null, [Validators.required,
+                        Validators.min(Number.MIN_VALUE),
+                        Validators.pattern('^0\.[0-9]*|[1-9]*$')]],
+      rate1!: ["", Validators.required],
+      number2!: [null, [Validators.required,
+                        Validators.min(Number.MIN_VALUE),
+                        Validators.pattern('^0\.[0-9]*|[1-9]*$')]],
+      rate2!: ["", Validators.required]
       // flow_trigger: true
       
     })
+    // ^(0|[0-9][0-9]*)$
+    this.calculateInput();
     
-    this.leftFormInput();
-    // this.rightFormInput();
   }
-// <<=== a function to calculate an input from the left source form and update a value of ht eright target form==>>
-  leftFormInput() {
+  // <<=== a function to track an inputs from the controlled fields, 
+  // <<=== calculate sum and update a value of the related target form,
+  // <<=== and to update related filed in accordance to the flowtrigger.
+  
+  calculateInput() {
     this.myForm.valueChanges.pipe(debounceTime(150)).subscribe(val => {
+
       if (val.number1 > 0 && this.flow_trigger && this.rate1 && this.rate2) {
         let sum = ((val.number1 * this.rate1) / this.rate2).toFixed(2);
-        
         this.myForm.get("number2")?.patchValue(Number(sum), { emitEvent: false });
-        // this.flow_trigger = true;
+        
       } else {
         if (val.number2 > 0 && !this.flow_trigger && this.rate1 && this.rate2) {
           let sum = ((val.number2 * this.rate2) / this.rate1).toFixed(2);
-          // this.flow_trigger = false;
           this.myForm.get("number1")?.patchValue(Number(sum), { emitEvent: false })
         }
       }
     })
   }
      
-  // get("number1"||"rate1"||"rate2")?
-  // <<=== a function to calculate an input from the right source form and update a value of the left target form==>>
-  // rightFormInput() {
-  //   this.myForm.get("number2")?.valueChanges.pipe(debounceTime(100)).subscribe(val => {
-  //     if (val > 0 && this.rate1 && this.rate2) {
-  //       let sum = ((val * this.rate2) / this.rate1).toFixed(2);
-  //       this.flow_trigger = false;
-  //       this.myForm.get("number1")?.patchValue(Number(sum), {emitEvent:false})
-  //     }
-  //     return null
-      
-  //   })
-  // }
+  // <<=== a helper functions which triggers a flowtrigger flag 
+  // <<=== to set a source truth field for calculation flow for the calculateInput function.
+  // <<=== also reset a field after focus on it.
+  
   onFocusLeft() {
     this.myForm.get("number1")?.reset();
     this.flow_trigger = true
@@ -73,48 +74,24 @@ export class ConvertorComponent implements OnInit {
     this.myForm.get("number2")?.reset();
     this.flow_trigger = false
   }
-  // <<== 2 function to trigger re-calculation in case both currency rates value changes initiated by user ==>>
+  
+  // <<== 2 functions to set both currency rates value changes initiated by user ==>>
+  
   setRate1(e: any): void {
     this.rate1 = e.target.value
-    // this.flow_trigger ? this.leftRateChange() : this.rightRateChange()
-    
   }
 
-   setRate2(e: any): void {
-     this.rate2 = e.target.value
-      //  this.flow_trigger? this.leftRateChange() : this.rightRateChange()
+  setRate2(e: any): void {
+    this.rate2 = e.target.value
+  }
   
-   }
-  leftInputPress() {
-    this.flow_trigger = true
+  Validaterate(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!this.rate1 || !this.rate2) {
+        return { Validaterate: false };
+      }
+      return null;
+    }
+  
   }
-
-  rightInputPress() {
-    this.flow_trigger = false
-  }
-  // initiateRecalcbyRateChange() {
-  //   if (this.flow_trigger&&this.number1>0) {
-  //     let sum = ((this.number1 * this.rate1) / this.rate2).toFixed(2);
-  //     this.myForm.get("number2")?.patchValue(Number(sum), { emitEvent: false })
-  //   }
-  //   return null
-  // }
-
-  // rightRateChange() {
-  //   if (this.number2 > 0) {
-  //     let sum = ((this.number2 * this.rate2) / this.rate1).toFixed(2);
-  //     this.myForm.get("number1")?.patchValue(Number(sum), { emitEvent: false })
-  //   }
-  //   return null
-  // }
-  // onChangeLeft() {
-  //   return this.amount1 = this.number1 * this.rates_Eur
-    
-  // }
-  // get amount_left() {
-  //   return this.myForm.get('number1')
-  // }
-  // onChangeRight() {
-  //   console.log('right')
-  // }
 }
