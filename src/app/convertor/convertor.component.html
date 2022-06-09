@@ -5,7 +5,13 @@
     <div class="form-input">
         <label for="number">Amount
             <input type="text" formControlName="number1" id="num1" placeholder="Input Amount" (focus)="onFocusLeft()" >
-         </label>   
+         </label>
+        <div *ngIf="(myForm.get('number1')?.dirty ||
+                         myForm.get('number1')?.touched
+                        ) &&
+                        myForm.get('number1')?.invalid">
+            Please input only positive digits.
+        </div>
     <select formControlName="rate1" (change)="setRate1($event)">
         <option value="" disabled>Please select a currency</option>
         <option value={{this.rates_Usd}}>
