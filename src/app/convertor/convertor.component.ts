@@ -30,11 +30,11 @@ export class ConvertorComponent implements OnInit {
     this.myForm = this.fb.group({
       number1!: [null, [Validators.required,
                         Validators.min(Number.MIN_VALUE),
-                        Validators.pattern('^0\.[0-9]*|[1-9]*$')]],
+                        Validators.pattern('(^0\.[0-9]*|[1-9]*$)')]],
       rate1!: ["", Validators.required],
       number2!: [null, [Validators.required,
                         Validators.min(Number.MIN_VALUE),
-                        Validators.pattern('^0\.[0-9]*|[1-9]*$')]],
+                        Validators.pattern('(^0\.[0-9]*|[1-9]*$)')]],
       rate2!: ["", Validators.required]
       // flow_trigger: true
       

@@ -1,16 +1,53 @@
 input {
     font-size: 30px;
     color: #757575;
-    padding: 10px 10px 10px 5px;
+    padding: 10px 10px 15px 5px;
     display: block;
     width: 150px;
     border: none;
     border-bottom: 1px solid #757575;
+    background: none;
+}
+
+.error {
+    font-size: 15px;
+    color: rgb(173, 73, 73);
+    transition: 1s 0px 10px;
+    
+}
+
+
+.rate {
+    font-size: 20px;
+    font-weight: normal;
+    color: #757575;
+    padding: 10px 10px 15px 5px;
+    display: flex;
+    margin-top: 10px;
+    width: auto;
+    border: none;
+    border-bottom: 1px solid #757575;
+    background: none;
+}
+.rate:focus{
+    outline: none;
+     border-bottom: 2px solid #757575;
 }
 
 input:focus {
     outline: none;
 }
+/* input:focus ~ label,   */
+/* input:not(:placeholder-shown) ~ label {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+  } */
+input:focus ~ label {
+    top:-35px;
+  font-size:14px;
+  color:#16aa4f;
+}
+
+
 .form-input{
     
     position: relative;
@@ -19,28 +56,53 @@ input:focus {
 
 }
 
+.converter_text {
+    font-size: 50px;
+    display: flex;
+    color: #999;
+    flex-direction: column;
+    margin-top: 50px;
+    
+    text-align: center;
+    font-weight: normal;
+    mix-blend-mode: difference;
+    
+}
+
 .group-input{
     display: flex;
     flex-direction: row;
+    margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: center;
+    /* padding-left: 10px;
+    padding-right: 10px; */
 }
 label {
     color: #999;
-    font-size: 18px;
-    font-weight: normal;
+    size: 20px;
     position: absolute;
+    left:5px;
+    top:-20px;
+    
+    font-weight:normal;
+    
     pointer-events: none;
-    left: 5px;
-    top: 10px;
-    transition: 0.2s ease all;
-    -moz-transition: 0.2s ease all;
-    -webkit-transition: 0.2s ease all;
+    
+    transition: 0.4s color 0.2s ease all;
+    
+   
 }
 
-input:focus~label,
-input:valid~label {
-    top: -20px;
-    font-size: 14px;
-    color: #5264AE;
+.sign{
+    
+    display: flex;
+    font-weight:300;
+    font-size: 50px;
+    padding-top: 7px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .bar {

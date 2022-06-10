@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Source+Sans+Pro&family=Tourney:wdth,wght@100,400;120.9,460&display=swap');
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body {
+/* body {
     font-family: "Quicksand", sans-serif;
-}
+} */
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Quicksand,  sans-serif; }
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Quicksand,  sans-serif; } */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

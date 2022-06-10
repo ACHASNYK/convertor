@@ -1,25 +1,24 @@
-<div>
-    <h1>Please input amount and select a currency to calculate a rate </h1>
+<div class="converter_text">
+    <span>CURRENCY CONVERTER</span>
 </div>
 <form [formGroup]="myForm" class="group-input">
     
     <div class="form-input">
         <input type="text" formControlName="number1" (focus)="onFocusLeft()" >
+        <label id="lbl1">input amount </label>
         <span class="highlight"></span>
         <span class="bar"></span>
-        <label class="label">input amount</label>
-        
-        <div *ngIf="(myForm.get('number1')?.dirty ||
+        <div class="error" *ngIf="(myForm.get('number1')?.dirty ||
                          myForm.get('number1')?.touched
                         ) &&
                         myForm.get('number1')?.invalid">
-            Please input only <strong>positive digits</strong>
+           <strong>error</strong> - pls input digits
         </div>
     </div>
     <div class="form-input">
-         <label>Currency name</label>
-        <select  formControlName="rate1" (change)="setRate1($event)">
-            <option value="" disabled>Please select a currency</option>
+         
+        <select  class="rate" formControlName="rate1" (change)="setRate1($event)">
+            <option value="" disabled>choose a currency</option>
             <option value={{this.rates_Usd}}>
             (USD) US Dollar
             </option>
@@ -31,30 +30,38 @@
             </option>
         </select>
     </div>
-
+    <div class="sign">
+        <span> = </span>
+    </div>
     <div class="form-input">
-    <input type="text" formControlName="number2"  (focus)="onFocusRight()">
-    <span class="highlight"></span>
-    <span class="bar"></span>
-    <label>input amount</label>
-    <div *ngIf="(myForm.get('number1')?.dirty ||
+        <input type="text" formControlName="number2"  (focus)="onFocusRight()">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label id="lbl2">input amount</label>
+        <div class="error" *ngIf="(myForm.get('number1')?.dirty ||
                              myForm.get('number1')?.touched
                             ) &&
                             myForm.get('number1')?.invalid">
-        Please input only <strong>positive digits</strong>
+        <strong>error</strong> - pls input digits
+         </div>
     </div>
-    <select formControlName="rate2" (change)="setRate2($event)">
-        <option value="" disabled>Please select a currency</option>
-        <option value={{this.rates_Usd}}>
-            USD
-        </option>
-        <option value={{this.rates_Eur}}>
-            EUR
-        </option>
-        <option value={{this.rates_Uah}}>
-            UAH
-        </option>
-    </select>
-</div>
+
+    
+    <div class="input-form">
+        <select class="rate" formControlName="rate2" (change)="setRate2($event)">
+            <option value="" disabled>choose a currency</option>
+            <option value={{this.rates_Usd}}>
+                (USD) US Dollar
+            </option>
+            <option value={{this.rates_Eur}}>
+                (EUR) Euro
+            </option>
+            <option value={{this.rates_Uah}}>
+                (UAH) Hryvnya
+            </option>
+        </select>
+    </div>
+
+    
 
 </form>
