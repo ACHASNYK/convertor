@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RateServiceService } from './rate-service.service';
+import { RateServiceService } from '../service/rate-service.service';
 import { Observable, of } from 'rxjs';
 import { Rate } from '../Rate';
 

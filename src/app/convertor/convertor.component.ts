@@ -86,13 +86,5 @@ export class ConvertorComponent implements OnInit {
     this.rate2 = e.target.value
   }
   
-  Validaterate(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (!this.rate1 || !this.rate2) {
-        return { Validaterate: false };
-      }
-      return null;
-    }
   
-  }
 }
