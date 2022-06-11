@@ -48,7 +48,7 @@ input:focus ~ label {
 .form-input{
     
     position: relative;
-    margin-bottom: 45px;
+    margin-bottom: 10px;
         
 
 }
@@ -58,7 +58,7 @@ input:focus ~ label {
     display: flex;
     color: #999;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 100px;
     
     text-align: center;
     font-weight: normal;
@@ -69,7 +69,7 @@ input:focus ~ label {
 .group-input{
     display: flex;
     flex-direction: row;
-    margin-top: 60px;
+    margin-top: 90px;
     margin-left: 10px;
     margin-right: 10px;
     justify-content: center;
